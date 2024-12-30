@@ -1,14 +1,7 @@
-import { useState } from "react";
-
-export default function Square() {
-    const [value, setValue] = useState(null);
-
-    function handleClick() {
-        setValue("X");
-    }
-
+/* eslint-disable react/prop-types */
+export default function Square({ value, onSquareClick }) {
     return (
-        <button className="square" onClick={handleClick}>
+        <button className="square" onClick={onSquareClick}>
             {value}
         </button>
     );
