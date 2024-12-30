@@ -22,8 +22,18 @@ export default function Board() {
         setXIsNext(!xIsNext);
     }
 
+    let status;
+    const winner = calculateWinner(squares);
+
+    if (winner) {
+        status = "Winner: " + winner;
+    } else {
+        status = "Next player: " + (xIsNext ? "X" : "O");
+    }
+
     return (
         <>
+            <div className="status">{status}</div>
             <div className="board-row">
                 <Square
                     value={squares[0]}
