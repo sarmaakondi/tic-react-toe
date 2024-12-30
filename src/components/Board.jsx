@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Square from "./Square";
-import { calculateWinner } from "../utils";
+import { calculateWinner, checkForTie } from "../utils";
 
 export default function Board() {
     const [xIsNext, setXIsNext] = useState(true);
     const [squares, setSquares] = useState(Array(9).fill(null));
 
     function handleClick(i) {
-        if (squares[i] || calculateWinner(squares)) {
+        if (squares[i] || calculateWinner(squares) || checkForTie(squares)) {
             return;
         }
 
@@ -24,9 +24,12 @@ export default function Board() {
 
     let status;
     const winner = calculateWinner(squares);
+    const isGameTie = checkForTie(squares);
 
     if (winner) {
         status = "Winner: " + winner;
+    } else if (isGameTie) {
+        status = "It's a tie!";
     } else {
         status = "Next player: " + (xIsNext ? "X" : "O");
     }

@@ -23,3 +23,9 @@ export const calculateWinner = (squares) => {
 
     return null;
 };
+
+export const checkForTie = (squares) => {
+    return (
+        !calculateWinner(squares) && squares.every((square) => square !== null)
+    );
+};
